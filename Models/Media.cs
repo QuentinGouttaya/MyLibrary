@@ -1,6 +1,8 @@
-using Interfaces;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Interfaces.IReadable;
 
-namespace Models.Media;
+namespace Models;
 
 [Table("Media")]
 public class Media : IReadable
@@ -15,4 +17,9 @@ public class Media : IReadable
   [Column("Title")]
   [Required(ErrorMessage = "Entrez un titre")]
   public required string Title { get; set; }
+
+  public virtual string DisplayInformation()
+  {
+    return $"Title: {Title}, Author: {Author}";
+  }
 }

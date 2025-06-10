@@ -2,5 +2,5 @@ namespace Interfaces.IReadable;
 
 public interface IReadable
 {
-    DisplayInformation();
+    string DisplayInformation();
 }
