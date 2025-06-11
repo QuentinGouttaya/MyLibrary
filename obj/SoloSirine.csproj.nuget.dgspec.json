@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\sirin\\OneDrive - École Hexagone\\Hexagone\\2024-2025\\C#\\SoloSirine\\SoloSirine.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\sirin\\OneDrive - École Hexagone\\Hexagone\\2024-2025\\C#\\SoloSirine\\SoloSirine.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sirin\\OneDrive - École Hexagone\\Hexagone\\2024-2025\\C#\\SoloSirine\\SoloSirine.csproj",
+        "projectName": "SoloSirine",
+        "projectPath": "C:\\Users\\sirin\\OneDrive - École Hexagone\\Hexagone\\2024-2025\\C#\\SoloSirine\\SoloSirine.csproj",
+        "packagesPath": "C:\\Users\\sirin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sirin\\OneDrive - École Hexagone\\Hexagone\\2024-2025\\C#\\SoloSirine\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sirin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\7.0.410\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
