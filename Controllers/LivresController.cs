@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
-using System.Threading.Tasks;
-
 
 namespace Controllers
 {
@@ -25,6 +23,43 @@ namespace Controllers
             return Ok(livres);
         }
 
+        // GET: /livres?start=xxx&end=yyy
+        [HttpGet("filter")]
+        public async Task<IActionResult> GetLivresFilterAuthorTitle(
+            [FromQuery] string? start,
+            [FromQuery] string? end)
+        {
+            var query = _context.Medias.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(start))
+            {
+                string startLower = start.ToLower();
+                query = query.Where(l =>
+                    EF.Functions.Like(l.Title, startLower + "%") ||
+                    EF.Functions.Like(l.Author, startLower + "%"));
+            }
+
+            if (!string.IsNullOrWhiteSpace(end))
+            {
+                string endLower = end.ToLower();
+                query = query.Where(l =>
+                    EF.Functions.Like(l.Title, "%" + endLower) ||
+                    EF.Functions.Like(l.Author, "%" + endLower));
+            }
+
+            var resultats = await query
+                .Select(x => new
+                {
+                    x.Id,
+                    Title = x.Title.ToLower(),
+                    Author = x.Author.ToLower()
+                })
+                .ToListAsync();
+
+            return Ok(resultats);
+        }
+    
+
         // GET: /livres/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetLivre(int id)
@@ -36,7 +71,7 @@ namespace Controllers
                 return NotFound(new { Message = "Livre non trouvé." });
             }
 
-            return Ok(livre);
+            return Ok(livre.DisplayInformation());
         }
 
         // POST: /livres
@@ -74,11 +109,6 @@ namespace Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != updatedLivre.Id)
-            {
-                return BadRequest(new { Message = "ID mismatch." });
-            }
-
             var existingLivre = await _context.Medias.FindAsync(id);
 
             if (existingLivre == null)
@@ -86,7 +116,7 @@ namespace Controllers
                 return NotFound(new { Message = "Livre non trouvé." });
             }
 
-           
+
             _context.Entry(existingLivre).CurrentValues.SetValues(updatedLivre);
 
             try
